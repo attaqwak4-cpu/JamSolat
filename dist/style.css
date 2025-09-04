@@ -1,0 +1,371 @@
+/* Reset ringkas */
+* { box-sizing: border-box; margin:0; padding:0; }
+html,body { height:100%; }
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Montserrat", Arial, sans-serif;
+  overflow: hidden;
+}
+
+.bg-solat {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -10; /* di belakang kandungan */
+  transition: background-image 2s ease-in-out;
+}
+
+/* ---------- Atas bar ---------- */
+.atas {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background: rgba(46, 153, 11, .65);
+  height:150px;
+  padding:14px 28px;
+}
+.kotaktarikh {
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  font-weight:700;
+  font-size:clamp(14px,2.5vw,22px);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  color:#fff;
+}
+.kotaktarikh .hari { font-size:1.5em; }
+.kotaktarikh .gregorian { font-size:1.5em; }
+.kotaktarikh .hijri { font-family: 'Amiri', serif; direction:rtl; font-size:1.5em; }
+
+/* logo & zone */
+.logo-zon { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.logo { height:64px; }
+.dropdown-zon { padding:6px 10px; border-radius:8px; border:none; font-weight:600; }
+
+/* jam  */
+.jam {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+}
+
+#jam-masa {
+  font-size: 5rem;
+  font-weight: bold;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.jam-bawah {
+  display: flex;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top:0px;
+  margin-bottom:0px;
+  gap:6px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+#jam-saat {
+  text-align: center;
+  flex: 1;
+}
+
+#jam-meridiem {
+  text-align: center;
+  flex: 1;
+}
+
+/* main area background: rgba(46, 153, 11, 1); */
+main { padding:12px 20px; }
+.solat-grid { display:grid; grid-template-columns: repeat(8,1fr); gap:6px; margin-bottom:12px; }
+.waktu-item { background: rgba(255,255,255,1); padding:7px; border-radius:12px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);}
+.nama-solat { font-size:1.8rem; font-weight:700; color:#111; text-align: center;}
+.waktuSolat { display:flex; flex-direction:column; align-items:center; gap:2px; }
+.solatTime { font-size:2.6rem; color:#ffe600; font-weight:800; text-shadow: 0 2px 6px rgba(0,0,0,0.6);}
+.meridiem { font-size: 1.6rem; font-weight:700; color:#111; }
+
+/* next solat */
+.next-solat { margin-top:12px; background:#111; padding:12px; text-align:center; font-size:1.9rem; font-weight: bold; border-radius:8px; }
+
+/* ================= Scroll Teks Bawah ================= */
+.scroll-container {
+  position: relative;
+  width: 100%;
+  height: 390px;
+  overflow: hidden;
+  color: #fff;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.scroll-wrapper {
+/*  position: absolute; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  bottom: -100%; /* mula di bawah container */
+  padding:10px;
+  align-items: center;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  animation-name: scroll-up;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.scroll-wrapper .tajuk {
+  padding:10px;
+  font-weight: bold;
+  font-size: 2.8em;
+  background:#111;
+  margin-bottom: 0.2em;
+}
+.perenggan {
+  font-size: 2.4em;
+  font-weight: bold;
+  text-align: center;
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(100%);
+  }
+  40% {
+   transform: translateY(10%);  /* naik sampai tengah */
+  }
+  60% {
+    transform: translateY(10%);  /* pause di tengah */
+  }
+  100% {
+    transform: translateY(-100%); /* hilang atas */
+  }
+}
+
+/* ---------- Slide core (fade-in/out) ---------- */
+.slide {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(0,0,0,0.9); color:#fff; z-index:9999;
+  opacity:0; visibility:hidden; transition: opacity 0.5s ease-in-out;
+  padding:30px; text-align:center; flex-direction:column;
+}
+
+/* visible */
+.slide.show { opacity:1; visibility:visible; }
+
+/* Large slide typography */
+.slide-large { font-weight:800; font-size: clamp(32px, 6vw, 120px); }
+
+/* IQAMAH styles */
+.iqamah-title { font-size: clamp(28px,5vw,64px); font-weight:900; margin-bottom:12px; }
+.iqamah-count { font-size: clamp(48px,9vw,160px); color:#ffe600; font-weight:900; }
+
+/* SLIDE INFO IMG - Full Bleed Styling */
+.slide-info-img {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9990;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#slide-info-img.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#slide-info-img img {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;          /* default, auto-switch dalam JS */
+  image-rendering: auto;
+  border: 0;
+  display: block;
+}
+
+
+/* === SLIDE KULIAH UNTUK PAPARAN TV 50 INCI (FULL HD 1920x1080) === */
+.slide-kuliah {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+/*  background: linear-gradient(to bottom, #4a90e2, #a0c4ff);  */
+  background-image: url("img/bg8.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  z-index: 5000;
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Header di atas */
+.kuliah-header {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 800;
+/*  background-color: rgba(0, 51, 102, 0.95);  */
+  padding: 10px 50px;
+/*  box-sizing: border-box; */
+  text-shadow: 0 4px 8px rgba(0,0,0,0.9);
+}
+
+/* Bahagian tengah */
+.kuliah-overlay {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 20px 40px;
+  text-align: center;
+}
+
+/* Kandungan utama */
+.kuliah-tengah {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  gap: 20px;
+}
+
+/* Gambar penceramah */
+.kuliah-tengah img {
+  max-width: 380px;
+  max-height: 420px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Tajuk kuliah */
+.kuliah-tengah h2 {
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 800;
+  margin: 0;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  border-radius: 10px;
+/*  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);  */
+  padding: 7px 64px;
+}
+
+/* Blok penceramah */
+.penceramah-block {
+/*  background: rgba(0, 0, 0, 0.3);  */ 
+/*  padding: 24px 64px;  */
+/*  border-radius: 16px;  */
+  max-width: 100%;
+/*  box-sizing: border-box;  */
+/*  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);  */
+}
+
+.penceramah-title {
+  font-size: clamp(28px, 3vw, 36px);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.penceramah-name {
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.penceramah-role {
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight:700;
+  margin-top: 10px;
+  opacity: 1;
+/*  text-shadow: 0 2px 6px rgba(0,0,0,0.6);  */
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px red;
+}
+
+/* Bar bawah */
+.kuliah-bottom-bar {
+  width:100%;
+  background:#0d3443;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 60px;
+  font-weight:700;
+  box-shadow: 0 -6px 30px rgba(0,0,0,0.6);
+}
+.kuliah-bottom-bar .bottom-left,
+.kuliah-bottom-bar .bottom-center,
+.kuliah-bottom-bar .bottom-right {
+  color:#fff; font-size:clamp(18px,3vw,30px);
+}
+
+
+/* Responsif mudah alih — tidak relevan untuk TV, tapi simpan jika perlu */
+@media (max-width: 768px) {
+  .kuliah-bottom-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 16px 20px;
+  }
+
+  .kuliah-overlay {
+    padding: 20px 10px;
+  }
+
+  .penceramah-block {
+    padding: 20px 16px;
+  }
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 600px) {
+  .kuliah-bottom-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 12px 20px;
+  }
+
+  .kuliah-overlay {
+    padding: 20px 10px;
+  }
+
+  .penceramah-block {
+    margin-top: 20px;
+  }
+}
+
+/* Responsive */
+@media (max-width:1100px) {
+  .kuliah-inner { flex-direction:column; padding:28px; gap:18px; max-height: calc(100% - 120px); }
+  .kuliah-bottom-bar { padding:14px; flex-direction:column; gap:6px; text-align:center; }
+}
+@media (max-width:700px) {
+  .solat-grid { grid-template-columns: repeat(2,1fr); }
+  #jam-masa { font-size: clamp(32px, 12vw, 80px); }
+    .penceramah-name { font-size:20px; }
+  .kuliah-bottom-bar .bottom-left,
+  .kuliah-bottom-bar .bottom-center,
+  .kuliah-bottom-bar .bottom-right { font-size:16px; }
+}

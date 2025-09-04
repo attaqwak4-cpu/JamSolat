@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Masjid At-Taqwa Keratong 4, Pahang</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+ <div id="bg-solat" class="bg-solat"></div>
+  <div id="kandungan">
+  <div class="atas">
+    <div class="kotaktarikh">
+      <div id="hari-minggu" class="hari">—</div>
+      <div id="tarikh-gregorian" class="gregorian">—</div>
+      <div id="tarikh-hijri" class="hijri">—</div>
+    </div>
+
+    <div class="logo-zon">
+      <img src="img/logo.png" alt="Logo" class="logo">
+      <select id="zon" class="dropdown-zon">
+        <option value="PHG02">PHG02</option>
+        <option value="SGR01">SGR01</option>
+        <option value="KDH01">KDH01</option>
+      </select>
+    </div>
+
+    <div id="jam-digital" class="jam">
+       <div id="jam-masa">--:--</div>
+       <div class="jam-bawah">
+          <span id="jam-saat">--</span>
+          <span id="jam-meridiem">ptg</span>
+       </div>
+    </div>
+</div>
+
+
+ <main>
+    <div id="waktu-solat" class="solat-grid"></div>
+    <div id="next-solat" class="next-solat">Memuat...</div>
+ </main>
+  <div class="scroll-container">
+   <div id="paparan-teks-bawah"></div>
+  </div>
+<!-- Slides (kapsul; .show akan menonjolkan dengan fade-in) -->
+<div id="slide-soa" class="slide slide-large">
+  <!-- div id="slide-soa" class="slide slide-soa" aria-hidden="true"></div  -->
+</div>
+  <div id="slide-masuk-waktu" class="slide slide-large">
+    <div id="masuk-nama" class="masuk-nama"></div>
+  </div>
+
+  <div id="slide-iqamah" class="slide slide-large">
+    <div class="iqamah-title">IQAMAH</div>
+    <div id="kiraan-iqamah" class="iqamah-count">--:--</div>
+  </div>
+
+  <div id="slide-solat" class="slide slide-large">صَلَاة</div>
+  <div id="slide-khutbah" class="slide slide-large">خُطْبَة ٱلْجُمُعَة</div>
+
+  <div id="slide-info" class="slide slide-large">
+    <img id="slide-info-img" src="" alt="Info" />
+  </div>
+
+<!-- SLIDE KULIAH: layout baru dengan gambar penceramah di tengah -->
+<div id="slide-kuliah" class="slide slide-kuliah">
+
+  <!-- ✳️ KULIAH HEADER — kini di atas sekali -->
+  <div class="kuliah-header">
+    <h1 id="kuliah-nama">Kuliah Maghrib</h1>
+  </div>
+
+  <!-- ✳️ ISI UTAMA SLIDE -->
+  <div class="kuliah-overlay">
+    <div class="kuliah-inner">
+      <div class="kuliah-tengah">
+        <img id="kuliah-gambar" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><rect width='100%' height='100%' fill='%23b7cf6b'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='40' fill='%23000' font-family='Montserrat, Arial'>Gambar Penceramah</text></svg>" alt="Penceramah" />
+        <h2 id="kuliah-tajuk">Tajuk Kuliah / Tema</h2>       
+      </div>
+    </div>
+
+    <div class="penceramah-block">
+    <!--- div class="penceramah-title">Penceramah</div --->
+      <div id="kuliah-penceramah" class="penceramah-name">Ustaz Contoh</div>
+      <div id="kuliah-jawatan" class="penceramah-role">Imam Masjid</div>
+    </div>
+  </div>
+
+  <!-- ✳️ BAR BAWAH -->
+  <div class="kuliah-bottom-bar">
+    <div class="bottom-left" id="kuliah-lokasi">Masjid at Taqwa</div>
+    <div class="bottom-center" id="kuliah-tarikh">Selasa, 12 Ogos 2025</div>
+    <div class="bottom-right" id="kuliah-masa">7:40 mlm</div>
+  </div>
+</div>
+
+
+  <audio id="azan-audio" src="audio/azan.mp3" preload="auto"></audio>
+
+  <!-- main.js anda (modul) -->
+  <script type="module" src="main.js"></script>
+ </div>
+</body>
+</html>
