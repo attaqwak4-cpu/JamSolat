@@ -22,12 +22,12 @@ const KULIAH_FETCH_INTERVAL_MS = 5*60*1000;   // refresh data kuliah setiap 5 mi
 const TEKS_BAWAH_FETCH_INTERVAL_MS = 5*60*1000; // refresh data teks bawah setiap 5 minit
 const KULIAH_ITEM_DURATION_MS  = 10*1000;     // setiap kuliah 10s
 const IQAMAH_DEFAULT_MIN       = 5;           // default 5 min
-const IQAMAH_MAP               = { Subuh:10, Zohor:5, Asar:5, Maghrib:3, Isyak:5 };
+const IQAMAH_MAP               = { Subuh:15, Zohor:12, Asar:10, Maghrib:10, Isyak:10 };
 const SOLAT_SLIDE_DURATION_MS  = 10*60*1000;  // slide SOLAT (gelap) 10 minit
 const SOA_WINDOW_SEC           = 300;         // SOA (5 min sebelum masuk waktu)
 const SOLAT_LEWAY_SEC          = 2;           // leeway pengesanan masuk waktu (s)
 const TEKS_ITEMS_PER_CYCLE     = 4;           // tayang 4 item teks berturut-turut sebelum ulang ke info
-const DURASI_KHUTBAH = 20 * 60 * 1000; // 20 minit khutbah Jumaat
+const DURASI_KHUTBAH = 45 * 60 * 1000; // 20 minit khutbah Jumaat
 
 /* ================== STATE ================== */
 let zon = localStorage.getItem("zon") || "PHG02";
